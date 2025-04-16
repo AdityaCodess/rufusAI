@@ -28,7 +28,7 @@ st.markdown("""
     }
     .stTextInput>div>div>input {
         background: #1a1a1a;
-        color: #fff;
+        color: pink;
         border-radius: 12px;
         border: 1px solid #ff44aa;
         padding: 12px;
@@ -37,6 +37,8 @@ st.markdown("""
     }
     .stTextInput>div>div>input:focus {
         transform: scale(1.05);
+        border: 1px solid pink;
+        
     }
     .bubble-user {
         background: linear-gradient(135deg, #ff4fa2, #ff7bbd);
@@ -70,8 +72,10 @@ st.markdown("""
         display: flex;
         flex-direction: column;
         gap: 10px;
+        
     }
     .message-box {
+        margin-top:15px;
         padding-top:30px;   
         padding: 15px;
         padding-bottom:30px;
