@@ -2,16 +2,16 @@ import streamlit as st
 import os
 import google.generativeai as genai
 
-# 💎 Your Gemini API Key
+# Gemini API Key
 GEMINI_API_KEY = st.secrets["gemini"]["api_key"]
 #GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=GEMINI_API_KEY)
 
 
-# 🎯 Page Configuration
+#Page Configuration
 st.set_page_config(page_title="RufusAI Chatbot", page_icon="💖", layout="centered")
 
-# 💅 Custom CSS for Sexy Gradient UI and Animation
+# Custom CSS for Sexy STYLE 
 st.markdown("""
     <style>
     body {
@@ -98,7 +98,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# 🏷️ Title
+#Title
 st.markdown(f"""
 <style>
 @keyframes glowWave {{
@@ -132,10 +132,10 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 
-# 🧠 Function to get Gemini response
-# 🧠 Init chat once, store prompt as the very first message
+# Function to get Gemini response
+# Init chat once, store prompt as the very first message
 if "chat" not in st.session_state:
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     st.session_state.chat = model.start_chat(history=[{
         "role": "user",
         "parts": ["""
@@ -161,7 +161,7 @@ def get_gemini_response(message: str):
         return f"Error from Gemini API: {str(e)}"
 
 
-# 💾 Initialize chat history
+#Initialize chat history
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
@@ -170,13 +170,13 @@ with st.form(key="chat_form", clear_on_submit=True):
     user_input = st.text_input("Type your message:", key="input")
     submitted = st.form_submit_button("💌 Send")
 
-# 💬 Handle input and get response
+# Handle input and get response
 if submitted and user_input:
     st.session_state.chat_history.append(("You", user_input))
-    bot_reply = get_gemini_response(user_input)
+    bot_reply  = get_gemini_response(user_input)
     st.session_state.chat_history.append(("Rufus", bot_reply))
 
-# 📜 Show chat history with pairs of messages in a single box (latest first)
+# Show chat history with pairs of messages in a single box (latest first)
 st.markdown("<div class='main'><div class='message-container'>", unsafe_allow_html=True)
 
 # Reverse chat history for newest on top
